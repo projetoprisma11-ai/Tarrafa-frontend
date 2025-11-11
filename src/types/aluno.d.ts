@@ -1,5 +1,7 @@
 export type Aluno = {
     id?: number;
+
+    //Antigo
     nome?: string;
     email?: string;
     graduacao?: string;
@@ -7,6 +9,16 @@ export type Aluno = {
     polo?: string;
     ultimoAcesso?: string;
     primeiroAcesso?: string;
+
+    // Novo (API Sumary)
+    name?: string;
+    email?: string;
+    degree_program?: string;
+    city?: string;
+    student_groups?: string;
+    first_access_moodle?: string;
+    last_access_moodle?: string;
+
 
     // reutilizaveis
     sentMsgs?: string;
