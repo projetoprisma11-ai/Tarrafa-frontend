@@ -1,22 +1,23 @@
 import styles from './Indicators.module.css';
-import alunoIcon from './aluno.png';
 import alunoIcon2 from './baixados2.png';
 import alunoIcon3 from './baixados.png';
 import alunoIcon1 from './baixados1.png';
 import alunoIcon5 from './evasion.png';
 import cognitive_depth from './cognitive_depth.png';
 import Image from 'next/image';
-import { Aluno as AlunoType, Tab } from "@/types/aluno";
-import * as React from "react";
-import AlunoRow from '@/components/template/alunoRow';
+import { Tab } from "@/types/aluno";
 import ScrollableTabs from '@/components/template/indicadoresTabs';
 import { Tooltip } from '@/components/template/tooltip';
 import { getIndicatorsInfo } from '@/utils/indicatorsInfo';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Indicators as IndicatorsAPI } from '@/types/indicators';
+import { api } from '@/utils/api';
+import { snakeCaseToNormal } from '@/utils/stringFormaters';
 
 interface IndicatorsProps {
-  aluno: AlunoType;
-  cursoSelecionado: number | null;
+  course_id: number;
+  student_id: number;
 }
 
 export const getNivel = (nivel: number) => {
@@ -30,8 +31,6 @@ export const getNivel = (nivel: number) => {
   }
 };
 
-export const getDesistencia = (flag: boolean) => flag ? "Sim" : "Não";
-
 const tabs: Tab[] = [
   'Interação Avaliativa',
   'Interação Não Avaliativa',
@@ -41,8 +40,30 @@ const tabs: Tab[] = [
   'Desistência'
 ];
 
-export default function Indicators({ aluno, cursoSelecionado }: IndicatorsProps) {
-  const [activeTab, setActiveTab] = React.useState<Tab>("Interação Avaliativa");
+const tabMapping: Record<Tab, string> = {
+  'Interação Avaliativa': 'engagement',
+  'Interação Não Avaliativa': 'motivation',
+  'Desempenho': 'performance',
+  'Profundidade Cognitiva': 'cognitive',
+  'Desistência': 'give_up'
+};
+
+export default function Indicators({ course_id, student_id }: IndicatorsProps) {
+  const [activeTab, setActiveTab] = useState<Tab>("Interação Avaliativa");
+  const [indicators, setIndicators] = useState<IndicatorsAPI | null>(null)
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await api.get(`analysis/subject/${course_id}/student/${student_id}/indicators`)
+        setIndicators(response.data.data.indicators)
+      } catch (err) {
+        console.error(err)
+      }
+    }
+
+    fetch()
+  }, [course_id, student_id])
 
   return (
     <div className="Box my-6">
@@ -73,7 +94,7 @@ export default function Indicators({ aluno, cursoSelecionado }: IndicatorsProps)
               </div>
               <div className="flex w-full justify-center">
                 <div className="flex flex-col leading-snug">
-                  <p className="font-semibold text-2xl">{aluno.posts_unrequired_label}</p>
+                  <p className="font-semibold text-2xl">{indicators ? snakeCaseToNormal(indicators.engagement) : "Carregando..."}</p>
                 </div>
               </div>
             </div>
@@ -98,7 +119,7 @@ export default function Indicators({ aluno, cursoSelecionado }: IndicatorsProps)
               </div>
               <div className="flex w-full justify-center">
                 <div className="flex flex-col leading-snug">
-                  <p className="font-semibold text-2xl">{aluno.posts_unrequired_label}</p>
+                  <p className="font-semibold text-2xl">{indicators ? snakeCaseToNormal(indicators.motivation) : "Carregando..."}</p>
                 </div>
               </div>
             </div>
@@ -123,7 +144,7 @@ export default function Indicators({ aluno, cursoSelecionado }: IndicatorsProps)
               </div>
               <div className="flex w-full justify-center">
                 <div className="flex flex-col leading-snug">
-                  <p className="font-semibold text-2xl">{aluno.performance_label}</p>
+                  <p className="font-semibold text-2xl">{indicators ? snakeCaseToNormal(indicators.performance) : "Carregando..."}</p>
                 </div>
               </div>
             </div>
@@ -148,7 +169,7 @@ export default function Indicators({ aluno, cursoSelecionado }: IndicatorsProps)
               </div>
               <div className="flex w-full justify-center">
                 <div className="flex flex-col leading-snug">
-                  <p className="font-semibold text-2xl">{aluno.cognitive_label}</p>
+                  <p className="font-semibold text-2xl">{indicators ? snakeCaseToNormal(indicators.cognitive) : "Carregando..."}</p>
                 </div>
               </div>
             </div>
@@ -204,7 +225,7 @@ export default function Indicators({ aluno, cursoSelecionado }: IndicatorsProps)
             </div>
             <div className="flex w-full justify-center">
               <div className="flex flex-col leading-snug">
-                <p className="font-semibold text-2xl">{aluno.give_up}</p>
+                <p className="font-semibold text-2xl">{indicators ? (indicators.give_up ? "Sim" : "Não") : "Carregando..."}</p>
               </div>
             </div>
           </div>
@@ -224,7 +245,7 @@ export default function Indicators({ aluno, cursoSelecionado }: IndicatorsProps)
         </div>
       </div>
 
-      <AlunoRow aluno={aluno} activeTab={activeTab} />
+      {/* <AlunoRow aluno={aluno} activeTab={activeTab} /> */}
     </div>
   );
 }

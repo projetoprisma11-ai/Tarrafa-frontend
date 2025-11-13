@@ -47,7 +47,7 @@ export default function DadosPessoais({ student }: DadosPessoaisProps) {
                     <div className="flex items-center">
                         <p className="text-sm font-medium w-32">Último Acesso</p>
                         <p className="text-sm bg-gray-100 rounded-md py-2 px-4 flex-1">
-                            {student ? (student.last_access_moodle ? student.last_access_moodle : student.first_access_moodle) : "Carregando..."}
+                            {student ? (student.last_access_subject ? student.last_access_subject : student.first_access_moodle) : "Carregando..."}
                         </p>
                     </div>
                 </div>

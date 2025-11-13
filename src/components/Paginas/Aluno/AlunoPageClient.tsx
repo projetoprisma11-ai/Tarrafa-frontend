@@ -3,10 +3,7 @@
 import Aluno from '@/components/Paginas/Aluno/Aluno';
 import Header from '@/components/Sidebar/Header/Header';
 import Sidebar from '@/components/Sidebar/Header/Sidebar';
-import { getAlunos } from '@/utils/mocks';
 import { Curso } from '@/types/curso';
-
-const alunosMock = getAlunos();
 
 interface AlunoPageClientProps {
     student_id: number,
@@ -15,9 +12,6 @@ interface AlunoPageClientProps {
 }
 
 export default function AlunoPageClient({ student_id, course, courses }: AlunoPageClientProps) {
-
-
-
     return (
         <div className="flex">
             <Sidebar />
@@ -29,7 +23,6 @@ export default function AlunoPageClient({ student_id, course, courses }: AlunoPa
                 <main>
                     <Aluno
                         curso={course}
-                        alunos={alunosMock}
                         student_id={student_id} />
                 </main>
             </div>
