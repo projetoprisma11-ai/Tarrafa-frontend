@@ -17,7 +17,7 @@ export type Aluno = {
     city?: string;
     student_groups?: string;
     first_access_moodle?: string;
-    last_access_moodle?: string;
+    last_access_subject?: string;
 
 
     // reutilizaveis
