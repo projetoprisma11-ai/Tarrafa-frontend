@@ -15,7 +15,8 @@ export default {
                     alto: "#008767",
                     medio: "#0004FF",
                     baixo: "#DF0404"
-                }
+                },
+                logo: "#6479D3",
             },
             screens: {
                 mobile: '980px',
