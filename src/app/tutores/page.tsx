@@ -5,7 +5,7 @@ import { Suspense } from "react";
 
 export default function TutoresPage() {
   return (
-      <Suspense fallback={<div>Carregando curso...</div>}>
+      <Suspense fallback={<div>Carregando...</div>}>
         <div className="flex">
           <Sidebar />
           <div className="flex-1">
