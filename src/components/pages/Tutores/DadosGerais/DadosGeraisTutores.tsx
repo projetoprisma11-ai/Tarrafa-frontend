@@ -64,15 +64,14 @@ export default function DadosGeraisTutores({ id }: DadosGeraisTutores) {
           <div className="flex flex-row justify-between items-center space-x-45">
             <div className="flex flex-row items-center">
               <p className="text-base text-gray-600 mb-2 text-left mr-6">
-                Total de logs <br /> 
-                médios por <br /> 
+                Total de logs<br /> 
+                médios por<br /> 
                 dia por tutor
               </p>
               <div className="w-20 h-12 bg-gray-100 flex items-center justify-center rounded text-base ">
                 {data.average_logs_per_day_per_tutor
                   ? formatValue(Number(data.average_logs_per_day_per_tutor))
                   : 0}
-
               </div>
             </div>
 
