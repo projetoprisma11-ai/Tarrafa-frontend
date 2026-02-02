@@ -1,6 +1,5 @@
 'use client';
 
-import styles from './Indicators.module.css';
 import responseIcon from './response.png'
 import clickIcon from './click.png'
 import chatIcon from './chat.png'
@@ -22,7 +21,6 @@ type IndicatorsInfo = {
   student_id: number,
   subject_id: number
 }
-
 
 interface IndicatorsProps {
   id_course: number
@@ -55,7 +53,7 @@ export default function Indicators({ id_course, id_tutor }: IndicatorsProps) {
           <p style={{ color: "#9291A5" }}>calculados</p>
         </div>
         <div className="m-10 flex gap-2">
-          <Button href='/#' >Detalhes</Button>
+          <Button href='/#'>Detalhes</Button>
           <Button href='/tutores/curso'>Ver mais</Button>
         </div>
       </div>
@@ -85,7 +83,7 @@ export default function Indicators({ id_course, id_tutor }: IndicatorsProps) {
               </div>
             </div>
             <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.interacaoAvaliativaInfo} />
+              <Tooltip message={getIndicatorsInfo.responseInfo} />
             </div>
           </div>
 
@@ -110,7 +108,7 @@ export default function Indicators({ id_course, id_tutor }: IndicatorsProps) {
               </div>
             </div>
             <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.relacaoAlunoProfInfo} />
+              <Tooltip message={getIndicatorsInfo.accessInfo} />
             </div>
           </div>
 
@@ -135,7 +133,7 @@ export default function Indicators({ id_course, id_tutor }: IndicatorsProps) {
               </div>
             </div>
             <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.desistenciaInfo} />
+              <Tooltip message={getIndicatorsInfo.feedbackInfo} />
             </div>
           </div>
         </div>
