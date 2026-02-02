@@ -30,8 +30,8 @@ export default function PerformanceRanking({ id }: PerformanceRankingProps) {
                 if (ranking_vector.length < 1)
                     error.setError("A turma não possui alunos o suficiente para criar um ranking")
             } catch (err) {
-                error.setError("Erro ao buscar ranking de melhor desempenho")
-                console.error("Erro ao buscar ranking de melhor desempenho: ", err)
+                error.setError("Erro ao buscar ranking de desempenho")
+                console.error("Erro ao buscar ranking de desempenho: ", err)
             }
         }
         fetch()

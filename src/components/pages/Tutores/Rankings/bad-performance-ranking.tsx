@@ -34,8 +34,8 @@ export default function BadPerformanceRanking({ id }: PerformanceRankingProps) {
             "A turma não possui alunos o suficiente para criar um ranking",
           );
       } catch (err) {
-        error.setError("Erro ao buscar ranking de melhor desempenho");
-        console.error("Erro ao buscar ranking de melhor desempenho: ", err);
+        error.setError("Erro ao buscar ranking de desempenho");
+        console.error("Erro ao buscar ranking de desempenho: ", err);
       }
     };
     fetch();
