@@ -17,5 +17,6 @@ export const getIndicatorsInfo = {
 
     accessInfo: "Analisa a presença e regularidade de acesso do tutor à plataforma, a partir dos registros de log, indicando o nível de acompanhamento da disciplina.",
 
-    responseInfo: "Avalia a participação do tutor em fóruns, considerando o volume de respostas e o tempo médio de atendimento às mensagens dos estudantes.",
+    responseInfo: "Avalia a participação do tutor em fóruns, considerando o volume de respostas e o tempo médio de atendimento às mensagens dos estudantes, com classificação do tempo de resposta em: rápida (menos de 1 dia), normal (entre 1 a 5 dias), atrasada (mais que 5 dias) ou sem resposta."
+
 };

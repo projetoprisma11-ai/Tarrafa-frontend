@@ -81,7 +81,7 @@ export default function Indicators() {
               </div>
             </div>
             <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.interacaoAvaliativaInfo} />
+              <Tooltip message={getIndicatorsInfo.responseInfo} />
             </div>
           </div>
 
@@ -107,7 +107,7 @@ export default function Indicators() {
               </div>
             </div>
             <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.relacaoAlunoProfInfo} />
+              <Tooltip message={getIndicatorsInfo.accessInfo} />
             </div>
           </div>
 
@@ -133,7 +133,7 @@ export default function Indicators() {
               </div>
             </div>
             <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.desistenciaInfo} />
+              <Tooltip message={getIndicatorsInfo.feedbackInfo} />
             </div>
           </div>
         </div>

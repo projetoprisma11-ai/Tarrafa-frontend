@@ -1,7 +1,7 @@
-import Rankings from "@/components/pages/Tutores/Rankings/ranking";
-import DadosGeraisTutores from "@/components/pages/Tutores/DadosGerais/DadosGeraisTutores";
-import Indicators from "@/components/pages/Tutores/Indicador/indicator-tutor";
-import TableComponent from "@/components/pages/Tutores/Table/Table-component";
+import Rankings from "@/components/pages/tutores/Rankings/ranking";
+import DadosGeraisTutores from "@/components/pages/tutores/DadosGerais/DadosGeraisTutores";
+import Indicators from "@/components/pages/tutores/Indicador/indicator-tutor";
+import TableComponent from "@/components/pages/tutores/Table/Table-component";
 import NotFound from "@/components/ui/not-found";
 import { getCourses } from "@/utils/api";
 import PageTemplate from "@/components/template/page-template";
