@@ -17,7 +17,7 @@ export const api = axios.create({
 })
 
 export async function getCourses(): Promise<Curso[]> {
-    const response = await api.get('/subjects')
+    const response = await api.get('/subjects/tutors')
     if (response.status != 200)
         return []
     return response.data.data.subjects
