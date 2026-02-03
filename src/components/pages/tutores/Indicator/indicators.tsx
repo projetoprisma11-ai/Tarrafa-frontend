@@ -1,8 +1,8 @@
 import Link from "next/link";
 import styles from './Indicators.module.css';
-import responseIcon from './response.png'
-import clickIcon from './click.png'
-import chatIcon from './chat.png'
+import chat from "./chat.png";
+import click from "./click.png";
+import response from "./response.png";
 import Image from 'next/image';
 import { Tooltip } from "@/components/template/tooltip";
 import { getIndicatorsInfo } from "@/utils/indicatorsInfo";
@@ -58,87 +58,146 @@ export default function Indicators() {
       <div className="relative after:absolute after:bottom-0 after:left-1/2 after:translate-x-[-50%] after:w-[90%] after:h-[1px] after:bg-gray-200 after:shadow-[0_2px_4px_rgba(0,0,0,0.05)] bg-white" />
 
       {data ? (
-        <div className="flex flex-row gap-6 justify-center px-10 py-8">
-          <div className="relative quadrado bg-[#DCFCE7]">
-            <div className="flex flex-col w-full justify-between">
-              <div className="ml-5 flex justify-start space-x-3">
-                <div className="bg-[#3CD856] rounded-full flex items-center justify-center w-8 h-8">
-                  <Image
-                    src={responseIcon}
-                    alt="Ícone aluno-professor"
-                    width={15}
-                    height={20}
-                    className="object-cover"
-                  />
-                </div>
-                <p className="text-2xl font-bold text-gray-900">{data.forum_response.good_percentage}%</p>
-              </div>
-              <div className="ml-17 flex text-left">
-                <div className="flex flex-col leading-snug">
-                  <p className={styles.textoPersonalizado2}>de disciplinas</p>
-                  <p className={styles.textoPersonalizado}>com ótimo índice de<br /> resposta em fóruns</p>
-                </div>
-              </div>
-            </div>
-            <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.responseInfo} />
-            </div>
-          </div>
+        <>
+          <div className={styles.BoxCentralizarIndicadores}>
+            <div className={styles.EspacarIndicadores}>
+              <div className="relative quadrado bg-[#C3D8FF]">
+                {data.forum_response.good_percentage >= 0 ? (
+                  <div className="flex flex-col w-full justify-between ">
+                    <div className="ml-5 flex justify-start space-x-3">
+                      <div className="bg-[#3C56D8] rounded-full flex items-center justify-center w-8 h-8">
+                        <Image
+                          src={chat}
+                          alt="Ícone aluno-professor"
+                          width={15}
+                          height={20}
+                          className="object-cover"
+                        />
+                      </div>
+                      <p className="text-2xl font-bold text-gray-900">
+                        {data.forum_response.good_percentage.toLocaleString(
+                          "pt-BR",
+                        )}
+                        %
+                      </p>
+                    </div>
 
-          <div className="relative quadrado bg-[#D0C3FF]">
-            <div className="flex flex-col w-full justify-between ">
-              <div className="ml-5 flex justify-start space-x-3">
-                <div className="bg-[#5C3CD8] rounded-full flex items-center justify-center w-8 h-8">
-                  <Image
-                    src={clickIcon}
-                    alt="Ícone aluno-professor"
-                    width={20}
-                    height={28}
-                    className="mr-0.5 object-cover"
-                  />
-                </div>
-                <p className="text-2xl font-bold text-gray-900">{data.access.good_percentage}%</p>
-              </div>
-              <div className="ml-17 flex text-left">
-                <div className="flex flex-col leading-snug">
-                  <p className={styles.textoPersonalizado2}>de disciplinas</p>
-                  <p className={styles.textoPersonalizado}>com bom índice de<br />acesso a plataforma</p>
-                </div>
-              </div>
-            </div>
-            <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.accessInfo} />
-            </div>
-          </div>
+                    <div className="ml-17 flex text-left">
+                      <div className="flex flex-col leading-snug">
+                        <p className={styles.textoPersonalizado2}>de disciplinas</p>
+                        <p className={styles.textoPersonalizado}>
+                          com ótimo índice de respostas em fóruns
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col w-full justify-between ">
+                    <div className="ml-5 flex justify-start space-x-3">
+                      <p className="text-2xl font-bold text-gray-900">
+                        Sem informações de mensagens processadas
+                      </p>
+                    </div>
+                  </div>
+                )}
 
-          <div className="relative quadrado bg-[#FFD8E2]">
-            <div className="flex flex-col w-full justify-between">
-              <div className="ml-5 flex justify-start space-x-3">
-                <div className="bg-[#D83C8C] rounded-full flex items-center justify-center w-8 h-8">
-                  <Image
-                    src={chatIcon}
-                    alt="Ícone aluno-professor"
-                    width={21}
-                    height={28}
-                    className="object-cover"
-                  />
-                </div>
-                <p className="text-2xl font-bold text-gray-900">{data.feedback.good_percentage}%</p>
-              </div>
-              <div className="ml-17 flex text-left">
-                <div className="flex flex-col leading-snug">
-                  <p className={styles.textoPersonalizado2}>de tutores</p>
-                  <p className={styles.textoPersonalizado}>com bom índice de<br />feedback</p>
+                <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
+                  <Tooltip message={getIndicatorsInfo.responseInfo} />
                 </div>
               </div>
-            </div>
-            <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-              <Tooltip message={getIndicatorsInfo.feedbackInfo} />
+
+              <div className="relative quadrado bg-[#D0C3FF]">
+                {data.access.good_percentage >= 0 ? (
+                  <div className="flex flex-col w-full justify-between ">
+                    <div className="ml-5 flex justify-start space-x-3">
+                      <div className="bg-[#5C3CD8] rounded-full flex items-center justify-center w-8 h-8">
+                        <Image
+                          src={click}
+                          alt="Ícone aluno-professor"
+                          width={20}
+                          height={28}
+                          className="object-cover text-white"
+                        />
+                      </div>
+                      <p className="text-2xl font-bold text-gray-900">
+                        {data.access.good_percentage.toLocaleString("pt-BR")}%
+                      </p>
+                    </div>
+
+                    <div className="ml-17 flex text-left">
+                      <div className="flex flex-col leading-snug">
+                        <p className={styles.textoPersonalizado2}>de disciplinas</p>
+                        <p className={styles.textoPersonalizado}>
+                          com bom índice de acesso à plataforma
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex flex-col w-full justify-between ">
+                    <div className="ml-5 flex justify-start space-x-3">
+                      <p className="text-2xl font-bold text-gray-900">
+                        Sem informações de acesso processadas
+                      </p>
+                    </div>
+                  </div>
+                )}
+                <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
+                  <Tooltip message={getIndicatorsInfo.accessInfo} />
+                </div>
+              </div>
+
+              <div className="relative quadrado bg-[#FFD8E2]">
+                {data.feedback.good_percentage >= 0 ? (
+                  <div className="flex flex-col w-full justify-between ">
+                  <div className="ml-5 flex justify-start space-x-3">
+                    <div className="bg-[#D83C8C] rounded-full flex items-center justify-center w-8 h-8">
+                      <Image
+                        src={response}
+                        alt="Ícone aluno-professor"
+                        width={15}
+                        height={20}
+                        className="object-cover text-white"
+                      />
+                    </div>
+                    <p className="text-2xl font-bold text-gray-900">
+                      {data.feedback.good_percentage.toLocaleString("pt-BR")}%
+                    </p>
+                  </div>
+
+                  <div className="ml-17 flex text-left">
+                    <div className="flex flex-col leading-snug">
+                      <p className={styles.textoPersonalizado2}>de disciplinas</p>
+                      <p className={styles.textoPersonalizado}>
+                        com bom índice de feedback
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                ) : (
+                  <div className="flex flex-col w-full justify-between ">
+                    <div className="ml-5 flex justify-start space-x-3">
+                      <p className="text-2xl font-bold text-gray-900">
+                        Sem informações de feedback processadas
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                
+                <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
+                  <Tooltip message={getIndicatorsInfo.feedbackInfo} />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </>
+      ) : error.hasError ? (
+        <div className="m-13">{error.renderError()}</div>
       ) : (
-        <Loading>Carregando dados</Loading>
+        <div className="m-13">
+          <Loading>Buscando dados</Loading>
+        </div>
       )}
     </div>
   );
