@@ -25,7 +25,12 @@ export default function CoursesDisplay({
     onPageChange,
     totalItems
 }: CoursesDisplayProps) {
-    const pageName = path.split('/').filter(segment => segment !== '')[0] || 'Disciplina';
+    const pageName =
+        path
+            .split("/")
+            .filter(segment => segment !== "")[0]
+            ?.replace(/^./, char => char.toUpperCase()) || "Disciplina";
+
     const itemsPerPage = 10;
 
     return (
