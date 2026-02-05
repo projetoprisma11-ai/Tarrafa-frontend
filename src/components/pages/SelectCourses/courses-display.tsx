@@ -2,7 +2,7 @@ import { Curso } from "@/types/curso";
 import CourseCard from "./course-card";
 import SearchInput from "@/components/template/searchInput";
 import Pagination from "@/components/template/pagination";
-import { useState } from "react";
+import { MdLibraryBooks } from "react-icons/md";
 
 interface CoursesDisplayProps {
     path: string
@@ -26,12 +26,12 @@ export default function CoursesDisplay({
     totalItems
 }: CoursesDisplayProps) {
     const pageName = path.split('/').filter(segment => segment !== '')[0] || 'Disciplina';
-    const itemsPerPage = 6;
+    const itemsPerPage = 10;
 
     return (
         <div className="flex-1 flex justify-center items-center pl-[240px]">
             <div className="BoxCurso">
-                <div className="flex flex-row justify-between items-start w-full">
+                <div className="flex flex-row justify-between items-start w-full mb-6">
                     <div className="flex flex-col items-start">
                         <h1 className="text-xl font-poppins font-semibold text-left">{pageName}</h1>
                         <p style={{ color: '#374DAA' }} className="text-left text-xl font-semibold">
@@ -61,7 +61,7 @@ export default function CoursesDisplay({
                         </>
                     ) : (
                         <div className="flex flex-col items-center justify-center py-12">
-                            <div className="text-gray-400 text-4xl mb-4">📚</div>
+                            <div className="text-gray-900 text-4xl mb-2"><MdLibraryBooks /></div>
                             <h3 className="text-lg font-medium text-gray-900 mb-2">
                                 Nenhum curso encontrado
                             </h3>
