@@ -8,9 +8,12 @@ import { get } from "http";
 import { Aluno as AlunoType } from "@/types/aluno";
 
 export const getNivel = (flag: string) => {
-	switch (flag) {
+	if (flag == null || typeof flag !== "string") return "Não definido";
+	const normalized = flag.trim().toLowerCase().replace(/\s+/g, "_").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+	switch (normalized) {
 		case "muito_baixo": return "Muito Baixo";
 		case "baixo": return "Baixo";
+		case "normal": return "Normal";
 		case "medio": return "Médio";
 		case "alto": return "Alto";
 		case "muito_alto": return "Muito Alto";
@@ -19,19 +22,22 @@ export const getNivel = (flag: string) => {
 };
 
 export const getFlagCor = (flag: string, reverse?: boolean) => {
-	switch (flag) {
-		case "muito_baixo": return "bg-red-100 text-red-700";
-		case "baixo": return "bg-orange-100 text-orange-700";
-		case "medio": return "bg-yellow-100 text-yellow-700";
-		case "alto": return "bg-indigo-100 text-indigo-700";
-		case "muito_alto": return "bg-emerald-100 text-emerald-700";
-
-		case "Muito baixo": return "bg-red-100 text-red-700";
-		case "Baixo": return "bg-orange-100 text-orange-700";
-		case "Médio": return "bg-yellow-100 text-yellow-700";
-		case "Alto": return "bg-indigo-100 text-indigo-700";
-		case "Muito Alto": return "bg-emerald-100 text-emerald-700";
-
+	const f = flag.toLowerCase().replace(" ", "_");
+	const colors = {
+		muito_baixo: reverse ? "bg-emerald-100 text-emerald-700" : "bg-red-100 text-red-700",
+		baixo: reverse ? "bg-indigo-100 text-indigo-700" : "bg-orange-100 text-orange-700",
+		medio: "bg-yellow-100 text-yellow-700",
+		alto: reverse ? "bg-orange-100 text-orange-700" : "bg-indigo-100 text-indigo-700",
+		muito_alto: reverse ? "bg-red-100 text-red-700" : "bg-emerald-100 text-emerald-700",
+	};
+	switch (f) {
+		case "muito_baixo": return colors.muito_baixo;
+		case "baixo": return colors.baixo;
+		case "normal":
+		case "médio":
+		case "medio": return colors.medio;
+		case "alto": return colors.alto;
+		case "muito_alto": return colors.muito_alto;
 		default: return "bg-gray-100 text-gray-600";
 	}
 };
@@ -101,7 +107,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			cell: (row: TutorType) => (
 				console.log(row.label_forums_response.toString()),
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.label_forums_response.toString() ?? "Não definido")}`}>
-					{row.label_forums_response.toString() ?? "Não definido"}
+					{getNivel(row.label_forums_response.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -118,7 +124,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "mean_forums_response_hours_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.mean_forums_response_hours_label.toString() ?? "Não definido")}`}>
-					{row.mean_forums_response_hours_label.toString() ?? "Não definido"}
+					{getNivel(row.mean_forums_response_hours_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -135,7 +141,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "label_feedback",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.median_forums_response_hours_label.toString() ?? "Não definido")}`}>
-					{row.median_forums_response_hours_label.toString() ?? "Não definido"}
+					{getNivel(row.median_forums_response_hours_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -164,7 +170,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "score_access_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.score_access_label.toString() ?? "Não definido")}`}>
-					{row.score_access_label.toString() ?? "Não definido"}
+					{getNivel(row.score_access_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -198,7 +204,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			cell: (row: TutorType) => (
 				console.log(row.label_feedback.toString()),
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.label_feedback.toString() ?? "Não definido")}`}>
-					{row.label_feedback.toString() ?? "Não definido"}
+					{getNivel(row.label_feedback.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -215,7 +221,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "n_corrections_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.n_corrections_label.toString() ?? "Não definido")}`}>
-					{row.n_corrections_label.toString() ?? "Não definido"}
+					{getNivel(row.n_corrections_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -232,7 +238,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "n_corrections_with_feedback_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.n_corrections_with_feedback_label.toString() ?? "Não definido")}`}>
-					{row.n_corrections_with_feedback_label.toString() ?? "Não definido"}
+					{getNivel(row.n_corrections_with_feedback_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -249,7 +255,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "n_feedback_pdf_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.n_feedback_pdf_label.toString() ?? "Não definido")}`}>
-					{row.n_feedback_pdf_label.toString() ?? "Não definido"}
+					{getNivel(row.n_feedback_pdf_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -266,7 +272,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "n_textual_feedback_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.n_textual_feedback_label.toString() ?? "Não definido")}`}>
-					{row.n_textual_feedback_label.toString() ?? "Não definido"}
+					{getNivel(row.n_textual_feedback_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -283,7 +289,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "percentage_feedback_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.percentage_feedback_label.toString() ?? "Não definido")}`}>
-					{row.percentage_feedback_label.toString() ?? "Não definido"}
+					{getNivel(row.percentage_feedback_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -303,7 +309,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 		{
 			label: (<div className="flex flex-row relative">
 				<div className="w-[90%]">
-					<p>Índice de Acessos à plataforma</p>
+					<p>Índice de Acessos à Plataforma</p>
 				</div>
 				<div className="absolute inset-y-0 right-0 flex items-center w-[10%] pr-1">
 					<Tooltip message={getIndicatorsInfo.accessInfo} />
@@ -312,7 +318,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "label_access",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.label_access.toString() ?? "Não definido")}`}>
-					{row.label_access.toString() ?? "Não definido"}
+					{getNivel(row.label_access.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -323,13 +329,13 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 		{
 			label: (<div className="flex flex-row relative">
 				<div className="w-[90%]">
-					<p>Índice de quantidade de dias inativos</p>
+					<p>Índice de Quantidade de Dias Inativos</p>
 				</div>
 			</div>),
 			name: "maximum_inactivity_days_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.maximum_inactivity_days_label.toString() ?? "Não definido", true)}`}>
-					{row.maximum_inactivity_days_label.toString() ?? "Não definido"}
+					{getNivel(row.maximum_inactivity_days_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -346,7 +352,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "n_login_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.n_login_label.toString() ?? "Não definido")}`}>
-					{row.n_login_label.toString() ?? "Não definido"}
+					{getNivel(row.n_login_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
@@ -367,7 +373,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 			name: "n_login_weekly_label",
 			cell: (row: TutorType) => (
 				<div className={`max-w-27 py-1 rounded-md text-xs font-medium border text-center mx-auto ${getFlagCor(row.n_login_weekly_label.toString() ?? "Não definido")}`}>
-					{row.n_login_weekly_label.toString() ?? "Não definido"}
+					{getNivel(row.n_login_weekly_label.toString() ?? "Não definido")}
 				</div>
 			)
 		},
