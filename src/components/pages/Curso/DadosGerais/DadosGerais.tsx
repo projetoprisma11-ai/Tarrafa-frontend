@@ -49,7 +49,7 @@ export default function DadosGerais({ id }: DadosGeraisProps) {
         {error.hasError ? (
           error.renderError()
         ) : data ? (
-          <div className="flex flex-row justify-between items-center space-x-45">
+          <div className="flex flex-row justify-between items-center space-x-45 mb-14">
             <div className="flex flex-row items-center">
               <p className="text-base text-gray-600 mb-2 text-left mr-6">
                 Total de<br />estudantes <br /> matriculados
