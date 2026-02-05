@@ -24,7 +24,7 @@ export default function CourseCard({ course, path }: CourseCardProps) {
 
             <h1 className="font-medium line-clamp-2" title={course.fullname}>{course.fullname}</h1>
             <p className="text-sm opacity-80 mt-auto">
-                {course.shortname} - {course.period}
+                {course.shortname} - {course.period?.replace(/^(\d{4})\.(\d{1,2})$/, (_, y, m) => `${m.padStart(2,'0')}/${y}`) ?? ''}
             </p>
         </Link>
     );
