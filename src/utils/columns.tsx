@@ -499,9 +499,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 					<p>Nível Médio de Profundidade Cognitiva</p>
 				</div>
 				<div className="absolute inset-y-0 right-1 flex items-center w-[10%] pt-1 pr-1">
-					<Link href="https://docs.moodle.org/501/en/Learning_analytics_indicators#Cognitive_depth">
-						<Tooltip message={getIndicatorsInfo.profCogInfo} />
-					</Link>
+					<Tooltip message={getIndicatorsInfo.profCogInfo} />
 				</div>
 			</div>),
 			name: "label",
@@ -688,9 +686,7 @@ export const getColumns = (activeTab: string | null, cursoSelecionado: number | 
 					<p>Profundidade Cognitiva</p>
 				</div>
 				<div className="absolute inset-y-0 right-2 flex items-center w-[10%] pt-1 pr-1">
-					<Link href="https://docs.moodle.org/501/en/Learning_analytics_indicators#Cognitive_depth">
-						<Tooltip message={getIndicatorsInfo.profCogInfo} />
-					</Link>
+					<Tooltip message={getIndicatorsInfo.profCogInfo} />
 				</div>
 			</div>),
 			name: "flagProfCog",

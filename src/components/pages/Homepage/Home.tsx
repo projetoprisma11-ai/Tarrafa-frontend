@@ -18,7 +18,7 @@ export default function Home() {
 
         </div>
         <div>
-          <div className="center-wrapper flex flex-col justify-between gap-10">
+          <div className="center-wrapper flex flex-col justify-between gap-10 mb-5">
             <DadosGerais />
             <Indicators />
             <div className="flex flex-row space-x-5">

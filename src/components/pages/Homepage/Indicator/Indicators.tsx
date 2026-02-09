@@ -191,9 +191,7 @@ export default function Indicators() {
                   </div>
                 </div>
                 <div className="absolute h-full top-0 right-0 pt-3 pr-3 text-md">
-                  <Link href="https://docs.moodle.org/501/en/Learning_analytics_indicators#Cognitive_depth">
-                    <Tooltip message={getIndicatorsInfo.profCogInfo} />
-                  </Link>
+                  <Tooltip message={getIndicatorsInfo.profCogInfo} />
                 </div>
               </div>
             </div>

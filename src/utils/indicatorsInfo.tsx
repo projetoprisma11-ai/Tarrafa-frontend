@@ -5,8 +5,8 @@ export const getIndicatorsInfo = {
 
     desempenhoInfo: "Considera a nota final de discentes na disciplina.",
 
-    profCogInfo: "Considera o envolvimento cognitivo de discentes no conjunto de tarefas da disciplina. Clique no ícone para mais informações.",
-
+    profCogInfo: "Considera o envolvimento cognitivo de discentes no conjunto de tarefas da disciplina.",
+    // Para mais informações, acesse: https://docs.moodle.org/501/en/Learning_analytics_indicators#Cognitive_depth
     relacaoAlunoProfInfo: "Considera a comunicabilidade direta entre discentes e docentes através de fóruns.",
 
     desistenciaInfo: " Indica discentes com baixas classificações gerais na agregação dos demais indicadores, comumente associado à desistência do curso.",
