@@ -66,7 +66,7 @@ export default function Indicators() {
   }, [error.clear, error.setError]);
 
   return (
-    <div className="Box mt-10 pb-5">
+    <div className="Box pb-5">
       <div className="maincurso">
         <div className="mt-10 ml-10 mb-5">
           <h1 className="text-xl font-poppins font-semibold text-left">Indicadores</h1>
@@ -253,8 +253,12 @@ export default function Indicators() {
             </div>
           </div>
         </>
+      ) : error.hasError ? (
+        <div className="m-13">{error.renderError()}</div>
       ) : (
-        <Loading>Carregando Dados</Loading>
+        <div className="m-13">
+          <Loading>Buscando dados</Loading>
+        </div>
       )}
     </div>
   );

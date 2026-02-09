@@ -18,13 +18,13 @@ export default function Home() {
 
         </div>
         <div>
-          <div className="center-wrapper flex flex-col justify-between">
+          <div className="center-wrapper flex flex-col justify-between gap-10">
+            <DadosGerais />
             <Indicators />
-            <div className="flex flex-row space-x-3">
+            <div className="flex flex-row space-x-5">
               <HomeRanking type='best-performance' />
               <HomeRanking type='at-risk' />
             </div>
-            <DadosGerais />
           </div>
         </div>
       </div>

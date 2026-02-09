@@ -24,7 +24,7 @@ export default function DadosGerais() {
 
 
   return (
-    <div className="Box2 mb-10">
+    <div className="Box2 mt-10">
       <div className="mb-14">
         <div className="maincurso">
           <div className="mt-10 ml-10 mb-5">
@@ -37,7 +37,7 @@ export default function DadosGerais() {
         <div className="relative after:absolute after:bottom-0 after:left-1/2 after:translate-x-[-50%] after:w-[90%] after:h-[1px] after:bg-gray-200 after:shadow-[0_2px_4px_rgba(0,0,0,0.05)] bg-white" />
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mb-14">
         {error.hasError && error.renderError()}
         {data ? (
           <div className="flex flex-row justify-between items-center space-x-47">

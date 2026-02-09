@@ -63,7 +63,7 @@ export default function Indicators() {
             <div className={styles.EspacarIndicadores}>
               <div className="relative quadrado bg-[#C3D8FF]">
                 {data.forum_response.good_percentage >= 0 ? (
-                  <div className="flex flex-col w-full justify-between ">
+                  <div className="flex flex-col w-full justify-between">
                     <div className="ml-5 flex justify-start space-x-3">
                       <div className="bg-[#3C56D8] rounded-full flex items-center justify-center w-8 h-8">
                         <Image
