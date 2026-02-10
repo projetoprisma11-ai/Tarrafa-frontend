@@ -22,7 +22,6 @@ export default function DadosGerais() {
     fetch()
   }, [error.clear, error.setError])
 
-
   return (
     <div className="Box2 mt-10">
       <div className="mb-14">

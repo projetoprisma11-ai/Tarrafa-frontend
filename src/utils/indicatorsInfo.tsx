@@ -9,7 +9,7 @@ export const getIndicatorsInfo = {
     // Para mais informações, acesse: https://docs.moodle.org/501/en/Learning_analytics_indicators#Cognitive_depth
     relacaoAlunoProfInfo: "Considera a comunicabilidade direta entre discentes e docentes através de fóruns.",
 
-    desistenciaInfo: " Indica discentes com baixas classificações gerais na agregação dos demais indicadores, comumente associado à desistência do curso.",
+    desistenciaInfo: "Indica discentes com baixas classificações gerais na agregação dos demais indicadores, comumente associado à desistência do curso.",
 
     // Tutores:
 

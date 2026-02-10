@@ -58,7 +58,7 @@ export default function Indicators({ id }: IndicatorsProps) {
         </div>
         {data ? (
           <div className="m-10 flex gap-2">
-            <Button href="/indicadores">Detalhes</Button>
+            {/* <Button href={`/cursos/${id}/alunos`}>Ver mais</Button> */}
             <Button href={`/cursos/${id}/alunos`}>Ver mais</Button>
           </div>
         ) : (
