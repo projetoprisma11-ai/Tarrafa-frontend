@@ -1,4 +1,4 @@
-import Tutores from "@/components/pages/tutores/tutores";
+import Tutores from "@/components/pages/Tutores/tutores";
 import NotFound from "@/components/ui/not-found";
 import { getCourses } from "@/utils/api";
 
