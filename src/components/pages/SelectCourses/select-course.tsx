@@ -14,7 +14,7 @@ interface SelectCourseProps {
 export default function SelectCourse({ path, courses }: SelectCourseProps) {
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 10;
 
     const filteredCourses = courses.filter(course =>
         course.fullname.toLowerCase().includes(searchTerm.toLowerCase()) ||

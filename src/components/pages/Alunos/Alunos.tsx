@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 import DataTable from "@/components/template/dataTable";
 import SearchInput from "@/components/template/searchInput";
 import { getColumns } from "@/utils/columns";
 import ScrollableTabs from "@/components/template/indicadoresTabs";
 import { Aluno as AlunoType, Tab } from "@/types/aluno";
-import { Curso as CursoType } from '@/types/curso';
+import { Curso as CursoType } from "@/types/curso";
 import { useEffect, useState } from "react";
 import { api } from "@/utils/api";
 import { useError } from "@/hooks/useError";
@@ -15,45 +15,47 @@ interface AlunosProps {
 }
 
 const tabs: Tab[] = [
-  'Interação Avaliativa',
-  'Interação Não Avaliativa',
-  'Desempenho',
-  'Profundidade Cognitiva',
-  'Desistência'
+  "Interação Avaliativa",
+  "Interação Não Avaliativa",
+  "Desempenho",
+  "Profundidade Cognitiva",
+  "Desistência",
 ];
 
 const tabMapping: Record<Tab, string> = {
-  'Interação Avaliativa': 'engagement',
-  'Interação Não Avaliativa': 'motivation',
-  'Desempenho': 'performance',
-  'Profundidade Cognitiva': 'cognitive',
-  'Desistência': 'give_up',
-  'Respostas em Fóruns': 'forum_responses',
-  'Acesso à Disciplina': 'subject_access',
-  'Feedback': 'feedback'
+  "Interação Avaliativa": "engagement",
+  "Interação Não Avaliativa": "motivation",
+  "Desempenho": "performance",
+  "Profundidade Cognitiva": "cognitive",
+  "Desistência": "give_up",
+  "Respostas em Fóruns": "forum_responses",
+  "Acesso à Disciplina": "course_access",
+  "Feedback": "feedback",
 };
 
 export default function Alunos({ curso }: AlunosProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [alunos, setAlunos] = useState<AlunoType[]>([]);
   const [activeTab, setActiveTab] = useState<Tab>("Interação Avaliativa");
-  const error = useError()
+  const error = useError();
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        error.clear()
-        console.log("Iniciando fetch:")
-        const response = await api.get(`analysis/subject/${curso.id}/students/${tabMapping[activeTab]}`)
-        console.log(response.data.data)
-        setAlunos(response.data.data)
+        error.clear();
+        console.log("Iniciando fetch:");
+        const response = await api.get(
+          `analysis/subject/${curso.id}/students/${tabMapping[activeTab]}`,
+        );
+        console.log(response.data.data);
+        setAlunos(response.data.data);
       } catch (err) {
-        error.setError("Erro ao buscar dados dos alunos")
-        console.error("Erro ao buscar dados dos alunos: ", err)
+        error.setError("Erro ao buscar dados dos alunos");
+        console.error("Erro ao buscar dados dos alunos: ", err);
       }
-    }
-    fetch()
-  }, [curso, activeTab, error.clear, error.setError])
+    };
+    fetch();
+  }, [curso, activeTab, error.clear, error.setError]);
 
   const columns = getColumns(activeTab, curso.id);
 
@@ -63,20 +65,29 @@ export default function Alunos({ curso }: AlunosProps) {
         {/* Header */}
         <div className="flex flex-row justify-between items-start w-full mb-4">
           <div className="flex flex-col items-start">
-            <h1 className="text-xl font-poppins font-semibold text-left">Alunos</h1>
+            <h1 className="text-xl font-poppins font-semibold text-left">
+              Alunos
+            </h1>
             {curso ? (
-              <p style={{ color: '#374DAA' }} className="text-left text-xl font-semibold">
+              <p
+                style={{ color: "#374DAA" }}
+                className="text-left text-xl font-semibold"
+              >
                 {curso.fullname}
               </p>
             ) : (
-              <p className="text-left">Nenhuma disciplina foi selecionada ainda.</p>
+              <p className="text-left">
+                Nenhuma disciplina foi selecionada ainda.
+              </p>
             )}
           </div>
           <div className="flex flex-col items-end">
             {curso ? (
               <>
                 <p className="text-sm text-right">{curso.period}</p>
-                <p className="text-xl text-right font-poppins font-semibold">{curso.shortname}</p>
+                <p className="text-xl text-right font-poppins font-semibold">
+                  {curso.shortname}
+                </p>
               </>
             ) : (
               <p></p>
@@ -95,7 +106,11 @@ export default function Alunos({ curso }: AlunosProps) {
                 />
               </div>
               <div className="flex-shrink-0">
-                <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} placeholder="Aluno" />
+                <SearchInput
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                  placeholder="Aluno"
+                />
               </div>
             </div>
 

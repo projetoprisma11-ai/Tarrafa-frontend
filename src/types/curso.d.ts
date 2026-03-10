@@ -9,4 +9,5 @@ export type Curso = {
     flagRelAlunoProf?: number,
     flagProfCog?: number,
     flagDesistencia?: boolean,
+    status?: string
 }

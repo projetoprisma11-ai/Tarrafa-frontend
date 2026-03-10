@@ -31,21 +31,22 @@ export default function DadosGerais({ id }: DadosGeraisProps) {
     };
     fetchData();
   }, [id, error.clear, error.setError]);
+
   return (
-    <div className="Box2 mt-5">
+    <div className="Box2 mt-10">
       <div className="mb-14">
         <div className="maincurso">
           <div className="mt-10 ml-10 mb-5">
             <h1 className="text-xl font-poppins font-semibold text-left">
               Dados Gerais
             </h1>
-            <p style={{ color: "#9291A5" }}>da disciplina</p>
+            <p style={{ color: "#9291A5" }}>da Disciplina</p>
           </div>
         </div>
         <div className="relative after:absolute after:bottom-0 after:left-1/2 after:translate-x-[-50%] after:w-[90%] after:h-[1px] after:bg-gray-200 bg-white" />
       </div>
 
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mb-14">
         {error.hasError ? (
           error.renderError()
         ) : data ? (
@@ -78,9 +79,7 @@ export default function DadosGerais({ id }: DadosGeraisProps) {
             </div>
           </div>
         ) : (
-          <div className="m-5">
             <Loading>Buscando dados</Loading>
-          </div>
         )}
       </div>
     </div>

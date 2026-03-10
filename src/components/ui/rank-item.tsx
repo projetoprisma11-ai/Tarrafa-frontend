@@ -17,7 +17,7 @@ export default function RankingItem({ position, content, link, icon = Search }: 
             <span className="w-6 text-left font-medium text-gray-700">
                 {position}
             </span>
-            <span className="flex-1 text-left text-gray-800">{content}</span>
+            <span className="flex-1 text-left text-gray-800 truncate overflow-hidden whitespace-nowrap max-w-xs px-3" title={content}>{content}</span>
             <button className="text-gray-700 cursor-pointer hover:text-gray-900">
                 <Link
                     href={link}

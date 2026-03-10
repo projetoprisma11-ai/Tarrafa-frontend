@@ -1,11 +1,9 @@
-import AlunoPageClient from '@/components/pages/Aluno/AlunoPageClient';
-import NotFound from '@/components/ui/not-found';
 import { getCourses } from '@/utils/api';
-
+import AlunosPageClient from '@/components/pages/Alunos/AlunosPageClient';
+import NotFound from '@/components/ui/not-found';
 interface PageProps {
   params: Promise<{
     id: string
-    student_id: string
   }>
 }
 
@@ -24,5 +22,5 @@ export default async function Page({ params }: PageProps) {
     )
   }
 
-  return <AlunoPageClient />;
+  return <AlunosPageClient cursos={cursos} curso={curso} />;
 }
