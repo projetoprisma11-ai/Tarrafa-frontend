@@ -10,7 +10,7 @@ interface DadosGeraisProps {
 }
 type GeneralData = {
   total_enrolled: number
-  approval_rates: number
+  approval_rate: number
   avg_grade_all: number
 }
 
@@ -23,6 +23,7 @@ export default function DadosGerais({ id }: DadosGeraisProps) {
       try {
         error.clear()
         const response = await api.get(`analysis/subject/${id}/summary`)
+        console.log(response.data.data.metrics)
         setData(response.data.data.metrics)
       } catch (err) {
         error.setError("Erro ao buscar dados gerais")
@@ -74,7 +75,7 @@ export default function DadosGerais({ id }: DadosGeraisProps) {
                 Taxa de <br />aprovação <br />da disciplina
               </p>
               <div className="w-20 h-12 bg-gray-100 flex items-center justify-center rounded text-base">
-                {data.approval_rates ? data.approval_rates.toLocaleString('pt-BR') : 0}%
+                {data.approval_rate ? data.approval_rate.toLocaleString('pt-BR') : 0}%
               </div>
             </div>
           </div>
