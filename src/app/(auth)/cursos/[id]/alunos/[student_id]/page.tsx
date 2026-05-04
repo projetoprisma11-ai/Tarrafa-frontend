@@ -9,8 +9,8 @@ interface PageProps {
   };
 }
 
-export default async function Page({ params }: PageProps) {
-  const { id, student_id } = params;
+export default async function Page({ params }: any) {
+  const { id, student_id } = await params;
 
   const cursos = await getCourses();
   const curso = cursos.find(curso => curso.id === Number(id));
